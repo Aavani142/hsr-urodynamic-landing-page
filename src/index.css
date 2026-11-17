@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Newsreader', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+
+  /* Deep navy — sampled from the clinic logo */
+  --color-navy-50: #eef4f8;
+  --color-navy-100: #d6e3ec;
+  --color-navy-200: #aec7d8;
+  --color-navy-300: #7fa3bc;
+  --color-navy-400: #4f7c9a;
+  --color-navy-500: #2f5f80;
+  --color-navy-600: #1d4c6b;
+  --color-navy-700: #134060;
+  --color-navy-800: #0b3a55;
+  --color-navy-900: #082c42;
+  --color-navy-950: #061f2f;
+
+  /* Muted medical teal — accent */
+  --color-teal-50: #eef6f4;
+  --color-teal-100: #d5e9e5;
+  --color-teal-200: #a9d2cb;
+  --color-teal-300: #77b4ab;
+  --color-teal-400: #46938a;
+  --color-teal-500: #2a7a72;
+  --color-teal-600: #1f6660;
+  --color-teal-700: #1a524e;
+
+  /* Warm editorial paper tones */
+  --color-paper: #faf7f1;
+  --color-sand-50: #f6f1e8;
+  --color-sand-100: #f0e9dc;
+  --color-sand-200: #e6dccb;
+  --color-line: #e2d8c7;
+  --color-ink: #33404a;
+  --color-muted: #6b7378;
+
+  /* Logo maroon — numerals and small details only */
+  --color-clay: #8a2b22;
+
+  --color-whatsapp: #1fa855;
+
+  --shadow-soft: 0 1px 2px rgb(40 30 15 / 0.04), 0 10px 30px -16px rgb(40 30 15 / 0.18);
+  --shadow-lift: 0 2px 6px rgb(8 44 66 / 0.06), 0 24px 50px -24px rgb(8 44 66 / 0.35);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-navy-900;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-teal-100 text-navy-900;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-teal-500;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+/* Small-caps style label used throughout the editorial layout */
+@utility kicker {
+  @apply text-[0.72rem] font-semibold tracking-[0.18em] uppercase;
+}

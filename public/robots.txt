@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Add the sitemap once the page has its final URL, e.g.
+# Sitemap: https://www.hsrurologyclinic.com/sitemap.xml
