@@ -60,6 +60,13 @@ export default function Navbar() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
+  // "Contact" opens the appointment popup instead of only scrolling
+  const onNavClick = (e, href) => {
+    if (href !== '#contact') return
+    e.preventDefault()
+    openModal()
+  }
+
   const book = () => {
     setOpen(false)
     openModal()
@@ -117,6 +124,7 @@ export default function Navbar() {
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    onClick={(e) => onNavClick(e, link.href)}
                     aria-current={isActive ? 'true' : undefined}
                     className={`relative py-2 text-[0.92rem] font-medium transition-colors ${
                       isActive ? 'text-navy-900' : 'text-muted hover:text-navy-900'
@@ -186,7 +194,10 @@ export default function Navbar() {
                     <li key={link.href}>
                       <a
                         href={link.href}
-                        onClick={() => setOpen(false)}
+                        onClick={(e) => {
+                          setOpen(false)
+                          onNavClick(e, link.href)
+                        }}
                         className={`block py-3.5 text-lg font-medium ${
                           active === link.href.slice(1) ? 'text-teal-600' : 'text-navy-900'
                         }`}

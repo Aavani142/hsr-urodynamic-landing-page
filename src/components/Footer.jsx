@@ -1,5 +1,6 @@
 import { ArrowUpRight, Globe, Mail, MapPin, Phone } from 'lucide-react'
 import SocialIcon, { WhatsAppIcon } from './SocialIcon'
+import { useContactModal } from '../context/contactModal'
 import { CLINIC, NAV_LINKS, SOCIAL_LINKS, whatsappLink } from '../data/clinic'
 
 const TEST_LINKS = [
@@ -15,6 +16,8 @@ const TEST_LINKS = [
 const YEAR = new Date().getFullYear()
 
 export default function Footer() {
+  const { openModal } = useContactModal()
+
   return (
     <footer className="bg-navy-950 text-navy-200" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
@@ -67,7 +70,15 @@ export default function Footer() {
             <ul className="mt-5 space-y-3 text-sm">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="transition-colors hover:text-white">
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      if (link.href !== '#contact') return
+                      e.preventDefault()
+                      openModal()
+                    }}
+                    className="transition-colors hover:text-white"
+                  >
                     {link.label}
                   </a>
                 </li>
