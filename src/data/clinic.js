@@ -14,21 +14,18 @@ export const CLINIC = {
     'Sector 6, HSR Layout, Bengaluru,',
     'Karnataka 560102',
   ],
-  mapsLink:
-    'https://www.google.com/maps/search/?api=1&query=HSR+Urology+Clinic+L-42+5th+Main+15th+Cross+Road+Sector+6+HSR+Layout+Bengaluru+560102',
-  mapsEmbed:
-    'https://maps.google.com/maps?q=L-42%2C%205th%20Main%2C%2015th%20Cross%20Road%2C%20Sector%206%2C%20HSR%20Layout%2C%20Bengaluru%20560102&z=16&output=embed',
+  // Clinic pin from the clinic's Google Maps listing (12.9140, 77.6287)
+  mapsLink: 'https://www.google.com/maps?cid=17534495379022461134',
+  mapsEmbed: 'https://maps.google.com/maps?q=HSR%20Urology%20Clinic%4012.9140022,77.6287391&ll=12.9140022,77.6287391&z=17&output=embed',
 }
 
 export const whatsappLink = (text = 'Hello HSR Urology Clinic, I would like to know more about the Urodynamic Study.') =>
   `https://wa.me/${CLINIC.whatsappNumber}?text=${encodeURIComponent(text)}`
 
-// Profiles linked from the official website. `null` = placeholder until a verified URL is provided.
+// Profiles linked from the official website.
 export const SOCIAL_LINKS = [
   { label: 'Instagram', href: 'https://www.instagram.com/hsrurologyclinic/' },
   { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61584104936667' },
-  { label: 'LinkedIn', href: null },
-  { label: 'YouTube', href: null },
 ]
 
 export const NAV_LINKS = [

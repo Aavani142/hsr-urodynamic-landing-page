@@ -40,7 +40,7 @@ function trackLead(source) {
 }
 
 const inputClass = (hasError) =>
-  `block w-full rounded-md border bg-white px-4 py-3 text-[0.95rem] text-navy-900 placeholder:text-muted/70 transition-colors focus:outline-none focus:ring-2 ${
+  `block w-full rounded-xl border bg-paper px-4 py-3.5 text-[0.95rem] text-navy-900 placeholder:text-muted/70 transition-colors focus:outline-none focus:ring-2 ${
     hasError ? 'border-red-400 focus:border-red-500 focus:ring-red-100' : 'border-line focus:border-teal-500 focus:ring-teal-100'
   }`
 
@@ -124,7 +124,7 @@ export default function ContactForm({ source = 'page', compact = false }) {
             <Button href={whatsappLink(buildMessage(values))} target="_blank" rel="noopener noreferrer" variant="whatsapp" icon={WhatsAppIcon}>
               Open WhatsApp again
             </Button>
-            <Button href={CLINIC.phoneHref} variant="secondary" icon={Phone}>
+            <Button href={CLINIC.phoneHref} variant="outline" icon={Phone}>
               Call {CLINIC.phoneDisplay}
             </Button>
           </div>
@@ -206,11 +206,11 @@ export default function ContactForm({ source = 'page', compact = false }) {
             </Field>
           </div>
 
-          <Button type="submit" variant="primary" size="lg" className="mt-6 w-full">
-            Book Appointment
+          <Button type="submit" variant="primary" size="lg" icon={WhatsAppIcon} className="mt-6 w-full">
+            Send enquiry on WhatsApp
           </Button>
           <p className="mt-3 text-center text-xs leading-relaxed text-muted">
-            Sent via WhatsApp
+            Submitting opens WhatsApp with your details. Your enquiry is sent when you tap Send.
           </p>
         </motion.form>
       )}

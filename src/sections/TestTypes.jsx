@@ -1,70 +1,81 @@
-import Reveal from '../components/Reveal'
-import SectionHeading from '../components/SectionHeading'
+import Button from '../components/Button'
+import { useContactModal } from '../context/contactModal'
 
 const TESTS = [
   {
-    title: 'Uroflowmetry Test',
-    text: 'You pass urine into a special commode that measures your flow. Simple, quick and no catheter.',
+    name: 'Uroflowmetry Test',
+    text: 'You pass urine into a special commode in a private room. It records how fast urine flows and how much you pass.',
+    facts: [
+      ['Catheter', 'None'],
+      ['Time', 'A few minutes'],
+    ],
+    dark: false,
   },
   {
-    title: 'Urodynamic Study',
-    text: 'Thin catheters measure bladder pressure as it fills and empties. Gives a detailed picture of bladder function.',
+    name: 'Urodynamic Study',
+    text: 'Thin, soft catheters record bladder pressure while it fills and empties. It shows how the bladder muscle and outlet behave.',
+    facts: [
+      ['Catheter', 'Thin, flexible'],
+      ['Time', 'About 30 to 60 min'],
+    ],
+    dark: true,
   },
   {
-    title: 'Bladder Function Evaluation',
-    text: 'A full assessment with your urologist, who decides which tests you need.',
+    name: 'Bladder Function Evaluation',
+    text: 'A full assessment with the urologist, who looks at your symptoms and history and decides which test you need.',
+    facts: [
+      ['Starts with', 'Consultation'],
+      ['Outcome', 'A clear plan'],
+    ],
+    dark: false,
   },
-]
-
-const COMPARISON = [
-  { label: 'Measures', flow: 'Urine flow only', uds: 'Bladder pressure and flow' },
-  { label: 'Catheter', flow: 'No', uds: 'Yes, thin and flexible' },
-  { label: 'Time', flow: 'A few minutes', uds: 'About 30 to 60 minutes' },
 ]
 
 export default function TestTypes() {
-  return (
-    <section id="tests" className="bg-navy-900 py-16 text-navy-100 sm:py-24" aria-labelledby="tests-heading">
-      <div className="container-page">
-        <SectionHeading id="tests-heading" tone="light" title="Bladder Function Tests We Offer" />
+  const { openModal } = useContactModal()
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {TESTS.map(({ title, text }, i) => (
-            <Reveal key={title} delay={0.06 * i} as="article" className="rounded-lg border-t-2 border-teal-300 bg-white/5 p-6">
-              <h3 className="font-serif text-2xl font-medium text-white">{title}</h3>
-              <p className="mt-2 leading-relaxed">{text}</p>
-            </Reveal>
-          ))}
+  return (
+    <section id="tests" className="section-y bg-white" aria-labelledby="tests-heading">
+      <div className="container-page">
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <div className="max-w-2xl">
+            <p data-reveal className="t-eyebrow">Tests we offer</p>
+            <h2 id="tests-heading" data-lines className="t-h2 mt-3">
+              Uroflowmetry Test and Urodynamic Study
+            </h2>
+            <p data-reveal className="mt-4 leading-relaxed text-muted">
+              Two tests that answer different questions. Many people need only the first.
+            </p>
+          </div>
+          <div data-reveal>
+            <Button onClick={openModal} variant="dark" size="md" arrow>
+              Ask which test you need
+            </Button>
+          </div>
         </div>
 
-        <Reveal className="mt-12">
-          <h3 className="font-serif text-2xl font-medium text-white">Uroflowmetry vs Urodynamic Study</h3>
-          <div className="mt-5 overflow-x-auto rounded-lg ring-1 ring-white/10">
-            <table className="w-full min-w-[30rem] text-left text-[0.95rem]">
-              <caption className="sr-only">Difference between uroflowmetry and a urodynamic study</caption>
-              <thead className="bg-white/5 text-white">
-                <tr>
-                  <th scope="col" className="px-5 py-3 font-medium">
-                    <span className="sr-only">Feature</span>
-                  </th>
-                  <th scope="col" className="px-5 py-3 font-semibold">Uroflowmetry</th>
-                  <th scope="col" className="px-5 py-3 font-semibold">Urodynamic Study</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {COMPARISON.map((row) => (
-                  <tr key={row.label}>
-                    <th scope="row" className="px-5 py-3 font-medium text-white">
-                      {row.label}
-                    </th>
-                    <td className="px-5 py-3">{row.flow}</td>
-                    <td className="px-5 py-3">{row.uds}</td>
-                  </tr>
+        <div data-stagger className="mt-10 grid gap-4 lg:grid-cols-3">
+          {TESTS.map(({ name, text, facts, dark }) => (
+            <article
+              data-item
+              key={name}
+              className={`flex flex-col rounded-3xl p-7 sm:p-8 ${dark ? 'bg-navy-900 text-navy-100' : 'bg-paper ring-1 ring-line'}`}
+            >
+              <h3 className={`font-display text-xl font-semibold tracking-tight ${dark ? 'text-white' : 'text-navy-900'}`}>
+                {name}
+              </h3>
+              <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed">{text}</p>
+              <dl className={`mt-6 grid grid-cols-2 gap-4 border-t pt-5 ${dark ? 'border-white/10' : 'border-line'}`}>
+                {facts.map(([k, v]) => (
+                  <div key={k}>
+                    <dt className={`text-xs ${dark ? 'text-navy-300' : 'text-muted'}`}>{k}</dt>
+                    <dd className={`mt-0.5 font-display font-semibold ${dark ? 'text-white' : 'text-navy-900'}`}>{v}</dd>
+                  </div>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </Reveal>
+              </dl>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )

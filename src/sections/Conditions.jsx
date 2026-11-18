@@ -1,33 +1,38 @@
-import Reveal from '../components/Reveal'
-import SectionHeading from '../components/SectionHeading'
-
 const CONDITIONS = [
-  { title: 'Overactive bladder', text: 'Checks for bladder contractions that cause urgency and frequency.' },
-  { title: 'Urinary incontinence', text: 'Helps tell stress leakage from urge leakage, which are treated differently.' },
-  { title: 'Bladder dysfunction', text: 'Shows whether the problem is in storing urine or emptying it.' },
-  { title: 'Urinary retention', text: 'Helps find out if a blockage or a weak bladder is the cause.' },
-  { title: 'Neurogenic bladder', text: 'Assesses bladder function in people with nerve conditions.' },
-  { title: 'Prostate-related symptoms', text: 'Helps show if a weak stream is due to the prostate or the bladder.' },
+  { title: 'Overactive bladder', text: 'Whether the bladder contracts on its own while filling, causing urgency.' },
+  { title: 'Urinary incontinence', text: 'Whether leaking comes from effort, from urgency, or both.' },
+  { title: 'Bladder dysfunction', text: 'Whether the problem is in storing urine or in emptying it.' },
+  { title: 'Urinary retention', text: 'Whether a blockage or a weak bladder muscle stops it emptying.' },
+  { title: 'Neurogenic bladder', text: 'How the bladder behaves when nerves are affected, such as with diabetes.' },
+  { title: 'Prostate-related symptoms', text: 'Whether a slow stream comes from the prostate or the bladder.' },
 ]
 
 export default function Conditions() {
   return (
-    <section id="conditions" className="py-16 sm:py-24" aria-labelledby="conditions-heading">
-      <div className="container-page">
-        <SectionHeading
-          id="conditions-heading"
-          title="Understanding Your Urinary Symptoms"
-          description="Testing helps your urologist evaluate these conditions, alongside your history and examination."
-        />
-
-        <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-          {CONDITIONS.map(({ title, text }, i) => (
-            <Reveal key={title} delay={0.04 * i} className="border-t border-line pt-5">
-              <h3 className="font-serif text-xl font-medium">{title}</h3>
-              <p className="mt-2 text-[0.95rem] leading-relaxed">{text}</p>
-            </Reveal>
-          ))}
+    <section id="conditions" className="section-y bg-paper" aria-labelledby="conditions-heading">
+      <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-4">
+          <p data-reveal className="t-eyebrow">Conditions evaluated</p>
+          <h2 id="conditions-heading" data-lines className="t-h2 mt-3">
+            Understanding your urinary symptoms
+          </h2>
+          <p data-reveal className="mt-4 leading-relaxed text-muted">
+            The same symptom can have different causes. Testing helps your urologist tell them apart, alongside your
+            history and examination.
+          </p>
         </div>
+
+        <ol data-stagger className="grid gap-x-10 sm:grid-cols-2 lg:col-span-8">
+          {CONDITIONS.map(({ title, text }, i) => (
+            <li data-item key={title} className="flex gap-4 border-t border-line py-6">
+              <span className="font-display text-sm font-semibold text-clay">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 className="t-h3">{title}</h3>
+                <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">{text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   )

@@ -1,32 +1,38 @@
-/*
-  Global styling lives in index.css (Tailwind v4 theme + base layer).
-  This file holds the few app-level styles that are clearer as plain CSS.
-*/
-
-/* Editorial drop cap for lead paragraphs */
-.drop-cap::first-letter {
-  float: left;
-  font-family: var(--font-serif);
-  font-size: 4.1em;
-  line-height: 0.82;
-  font-weight: 500;
-  margin: 0.08em 0.12em 0 0;
-  color: var(--color-navy-800);
+/* Masked line reveals: keep descenders from being clipped */
+.split-line {
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
 }
 
 /* Smooth height for the FAQ answer panel */
 .faq-panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 300ms ease;
+  transition: grid-template-rows 450ms var(--ease-out-expo);
 }
 
 .faq-panel[data-open='true'] {
   grid-template-rows: 1fr;
 }
 
+/* Animated underline used for text links */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 450ms var(--ease-out-expo);
+  padding-bottom: 2px;
+}
+
+.link-underline:hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .faq-panel {
+  .faq-panel,
+  .link-underline {
     transition: none;
   }
 }
